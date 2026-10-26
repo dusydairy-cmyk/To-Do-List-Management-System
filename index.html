@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TaskMate student to-do list manager" />
+  <title>TaskMate — Student To-Do List</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="TaskMate home"><span class="brand-icon">✓</span><span>TaskMate</span></a>
+      <p class="nav-label">WORKSPACE</p>
+      <nav aria-label="Task filters" class="nav">
+        <button class="nav-item active" data-filter="all"><span>▦</span> All tasks <span class="nav-count" id="allCount">0</span></button>
+        <button class="nav-item" data-filter="pending"><span>◷</span> Pending <span class="nav-count" id="pendingCount">0</span></button>
+        <button class="nav-item" data-filter="completed"><span>✓</span> Completed <span class="nav-count" id="completedCount">0</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="tip-card"><span class="tip-icon">✦</span><strong>Small steps add up.</strong><p>Stay consistent and make progress one task at a time.</p></div>
+        <p class="sidebar-foot">STUDENT PRODUCTIVITY</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow" id="todayLabel">YOUR STUDY SPACE</p><h1>Good day! <span class="wave">✦</span></h1><p class="subtitle">Let's make today productive.</p></div>
+        <div class="avatar" aria-label="Student profile">S</div>
+      </header>
+
+      <section class="stats" aria-label="Task statistics">
+        <article class="stat-card"><div class="stat-top"><span>Total tasks</span><span class="stat-icon purple">▦</span></div><strong id="totalStat">0</strong><small>All your tasks in one place</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Pending</span><span class="stat-icon orange">◷</span></div><strong id="pendingStat">0</strong><small>Keep moving forward</small></article>
+        <article class="stat-card"><div class="stat-top"><span>Completed</span><span class="stat-icon green">✓</span></div><strong id="completedStat">0</strong><small>Celebrate your progress</small></article>
+      </section>
+
+      <section class="progress-card">
+        <div class="progress-copy"><div><p class="eyebrow">YOUR PROGRESS</p><h2>You're getting there!</h2><p class="muted">Every completed task is a win.</p></div><div class="progress-number"><strong id="progressPercent">0%</strong><span>completed</span></div></div>
+        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      </section>
+
+      <section class="tasks-section">
+        <div class="section-heading"><div><h2 id="listTitle">All tasks</h2><p class="muted">Organize your studies, one task at a time.</p></div><button class="primary-btn" id="addTaskBtn">＋ Add task</button></div>
+        <div class="toolbar"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search tasks..." aria-label="Search tasks" /></label><select id="categoryFilter" aria-label="Filter by subject"><option value="all">All subjects</option><option>Assignments</option><option>Exams</option><option>Projects</option><option>Personal</option></select><select id="sortSelect" aria-label="Sort tasks"><option value="date">Sort: Due date</option><option value="priority">Sort: Priority</option><option value="created">Sort: Recently added</option></select></div>
+        <div id="taskList" class="task-list"></div>
+        <div id="emptyState" class="empty-state"><div class="empty-icon">✦</div><h3>No tasks here yet</h3><p>Add a task to start planning your day.</p><button class="primary-btn" id="emptyAddBtn">＋ Create your first task</button></div>
+      </section>
+      <footer>Made for your goals, one task at a time <span>✦</span></footer>
+    </main>
+  </div>
+
+  <dialog id="taskDialog" class="task-dialog">
+    <form id="taskForm">
+      <div class="dialog-heading"><div><p class="eyebrow">TASK DETAILS</p><h2 id="dialogTitle">Add a new task</h2></div><button type="button" class="close-btn" id="closeDialog" aria-label="Close">×</button></div>
+      <input type="hidden" id="taskId" />
+      <label>Task title <input id="taskTitle" maxlength="100" required placeholder="e.g. Finish maths assignment" /></label>
+      <label>Description <textarea id="taskDescription" rows="3" maxlength="300" placeholder="Add a few details (optional)"></textarea></label>
+      <div class="form-row"><label>Subject<select id="taskCategory"><option>Assignments</option><option>Exams</option><option>Projects</option><option>Personal</option></select></label><label>Priority<select id="taskPriority"><option value="medium">Medium</option><option value="high">High</option><option value="low">Low</option></select></label></div>
+      <label>Due date <input type="date" id="taskDueDate" /></label>
+      <div class="form-actions"><button type="button" class="secondary-btn" id="cancelDialog">Cancel</button><button type="submit" class="primary-btn">Save task</button></div>
+    </form>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
